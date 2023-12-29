@@ -57,6 +57,10 @@ public class PluginHelper {
     private PluginHelper() {
     }
 
+    /**
+     * 初始化context,并将插件zip和apk复制到应用目录
+     * @param context
+     */
     public void init(Context context) {
         pluginManagerFile = new File(context.getFilesDir(), sPluginManagerName);
         pluginZipFile = new File(context.getFilesDir(), sPluginZip);
@@ -72,6 +76,9 @@ public class PluginHelper {
 
     }
 
+    /**
+     * 复制插件到应用目录
+     */
     private void preparePlugin() {
         try {
             InputStream is = mContext.getAssets().open(sPluginManagerName);

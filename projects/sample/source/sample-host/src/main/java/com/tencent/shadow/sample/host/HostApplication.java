@@ -49,7 +49,7 @@ public class HostApplication extends Application {
         setWebViewDataDirectorySuffix();
         LoggerFactory.setILoggerFactory(new AndroidLogLoggerFactory());
 
-        if (isProcess(this, ":plugin")) {
+        if (isProcess(this, ":plugin")) {//检测是否是插件进程
             //在全动态架构中，Activity组件没有打包在宿主而是位于被动态加载的runtime，
             //为了防止插件crash后，系统自动恢复crash前的Activity组件，此时由于没有加载runtime而发生classNotFound异常，导致二次crash
             //因此这里恢复加载上一次的runtime
@@ -63,6 +63,9 @@ public class HostApplication extends Application {
         HostUiLayerProvider.init(this);
     }
 
+    /**
+     * 设置webview目录前缀
+     */
     private static void setWebViewDataDirectorySuffix() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return;
@@ -70,6 +73,9 @@ public class HostApplication extends Application {
         WebView.setDataDirectorySuffix(Application.getProcessName());
     }
 
+    /**
+     * 启用严格模式，检测使用的非AdnroidSDK的公共api
+     */
     private static void detectNonSdkApiUsageOnAndroidP() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return;

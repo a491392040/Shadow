@@ -24,7 +24,7 @@ android {
             signingConfig.initWith(buildTypes.debug.signingConfig)
         }
     }
-    sourceSets {
+    sourceSets {//设置了插件的assets目录
         debug {
             assets.srcDir('build/generated/assets/sample-manager/debug/')
             assets.srcDir('build/generated/assets/plugin-zip/debug/')
@@ -73,7 +73,7 @@ def generateAssets(generateAssetsTask, buildType) {
                     "/outputs/apk/${buildType}/" +
                     "${moduleName}-${buildType}.apk"
     )
-    generateAssetsTask.dependsOn createCopyTask(
+    generateAssetsTask.dependsOn createCopyTask( //先执行这个task再执行generateAssetsTask
             ':sample-manager',
             buildType,
             moduleName,
@@ -95,7 +95,7 @@ def generateAssets(generateAssetsTask, buildType) {
 
 }
 
-tasks.whenTaskAdded { task ->
+tasks.whenTaskAdded { task ->//当执行该task时执行generateAssets
     if (task.name == "generateDebugAssets") {
         generateAssets(task, 'debug')
     }

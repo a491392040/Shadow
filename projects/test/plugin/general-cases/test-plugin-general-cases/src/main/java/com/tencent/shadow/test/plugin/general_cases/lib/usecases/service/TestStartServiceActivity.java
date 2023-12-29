@@ -18,6 +18,7 @@
 
 package com.tencent.shadow.test.plugin.general_cases.lib.usecases.service;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -28,11 +29,12 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.tencent.shadow.test.plugin.general_cases.R;
 import com.tencent.shadow.test.plugin.general_cases.lib.gallery.util.ToastUtil;
@@ -74,6 +76,7 @@ public class TestStartServiceActivity extends WithIdlingResourceActivity {
         }).start();
     }
 
+    @SuppressLint("WrongConstant")
     public void bind(View view) {
         setIdle();
         bindService(serviceIntent, serviceConnection, Service.BIND_AUTO_CREATE);
