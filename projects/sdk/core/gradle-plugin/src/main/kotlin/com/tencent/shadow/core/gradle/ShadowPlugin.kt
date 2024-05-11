@@ -247,7 +247,7 @@ class ShadowPlugin : Plugin<Project> {
                         tempCL.loadClass("com.android.tools.apk.analyzer.BinaryXmlParser")
                     val decodeXmlMethod = binaryXmlParserClass.getDeclaredMethod(
                         "decodeXml",
-                        String::class.java,
+//                        String::class.java,
                         ByteArray::class.java
                     )
 
@@ -258,7 +258,7 @@ class ShadowPlugin : Plugin<Project> {
 
                     val outputXmlBytes = decodeXmlMethod.invoke(
                         null,
-                        "AndroidManifest.xml",
+//                        "AndroidManifest.xml",
                         binaryXml
                     ) as ByteArray
                     decodeXml.parentFile.mkdirs()

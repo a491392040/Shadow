@@ -42,6 +42,10 @@ public class ShadowActivity extends PluginActivity {
         }
     }
 
+    public boolean isLaunchedFromBubble() {
+        return false;
+    }
+
     @Override
     public final ShadowApplication getApplication() {
         return mPluginApplication;
